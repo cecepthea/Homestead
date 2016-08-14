@@ -3,32 +3,31 @@ class Pages extends CI_Controller {
 
     public function view($page = 'home') {
 
-        $this->load->library('calendar');
+        $this->load->helper(array('form', 'url'));
 
-        $data = array(
-                3  => 'http://example.com/news/article/2006/06/03/',
-                7  => 'http://example.com/news/article/2006/06/07/',
-                13 => 'http://example.com/news/article/2006/06/13/',
-                26 => 'http://example.com/news/article/2006/06/26/'
-        );
+        // echo base_url().'public/js/test.js';die;
 
-        echo $this->calendar->generate(2006, 6, $data);die;
-
+        /*
         if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php')) {
             // Whoops, we don't have a page for that!
             show_404();
         }
+        */
 
         $data['title'] = ucfirst($page); // Capitalize the first letter
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/'.$page, $data);
-        $this->load->view('templates/footer', $data);
+        // $this->load->view('templates/header', $data);
+        // $this->load->view('pages/'.$page, $data);
+        // $this->load->view('templates/footer', $data);
+
+        $this->load->view('test');
     }
 
     public function index(){
 
         $this->load->helper(array('form', 'url'));
+
+        echo base_url();die;
 
         $this->load->library('form_validation');
 
