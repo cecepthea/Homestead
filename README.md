@@ -8,6 +8,8 @@ https://github.com/ElemeFE/mint-ui
 
 https://github.com/vuejs/vue-hackernews
 
+materialize
+
 Vue.js + CodeIgniter module homestead
 
 ```
