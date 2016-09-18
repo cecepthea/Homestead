@@ -25,3 +25,7 @@ Admin Module
 
 BBS Module
 ```
+
+ref:
+
+[Require](http://javascript.ruanyifeng.com/nodejs/module.html#toc5)
