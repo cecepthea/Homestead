@@ -6,6 +6,8 @@ https://github.com/ElemeFE/vue-desktop
 
 https://github.com/ElemeFE/mint-ui
 
+https://github.com/airyland/vux
+
 https://github.com/vuejs/vue-hackernews
 
 materialize
