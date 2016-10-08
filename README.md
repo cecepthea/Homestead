@@ -6,6 +6,8 @@ https://github.com/ElemeFE/mint-ui
 
 https://github.com/vuejs/vue-hackernews
 
+vue-2.0
+
 http://element.eleme.io/#/
 
 materialize
