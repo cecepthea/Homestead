@@ -10,7 +10,7 @@ vue-2.0
 
 http://element.eleme.io/#/
 
-materialize
+https://github.com/google/material-design-lite
 
 Vue.js + CodeIgniter module homestead
 
