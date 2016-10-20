@@ -8,6 +8,8 @@ https://github.com/vuejs/vue-hackernews
 
 vue-2.0
 
+element rc 是否结束？
+
 http://element.eleme.io/#/
 
 https://github.com/google/material-design-lite
