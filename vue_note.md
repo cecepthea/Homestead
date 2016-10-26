@@ -11,11 +11,21 @@
 v-bind # in element attributes.
 
 the attribute will be removed if the condition evaluates to a falsy value:
+
 <button v-bind:disabled="someDynamicCondition">Button</button>
 
 ============
 
 v-model on input, two way with data
+
+But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use v-bind to achieve that. In addition, using v-bind allows us to bind the input value to non-string values.
+
+<input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+  
+// when checked:
+vm.toggle === vm.a
+// when unchecked:
+vm.toggle === vm.b
 
 v-once interpolations only once
 
@@ -149,6 +159,10 @@ v-for
   {{ index }}. {{ key }} : {{ value }}
 </div>
 
+<my-component v-for="item in items" v-bind:item="item" v-bind:index="index"></my-component> 
+  
+// won’t automatically pass any data to the component,manual to pass the iterated data into the component.
+
 Scope: Inside v-for blocks we have full access to parent scope properties
 
 html:
@@ -177,7 +191,7 @@ var example2 = new Vue({
 ```
 
 # html
-v-on:click
+v-on:click="reverseMessage"
 
 # javascript
 new Vue({
@@ -272,6 +286,35 @@ var app7 = new Vue({
     ]
   }
 })
+
+----------------------------------------------------
+
+Local Registration:
+
+var Child = {
+  template: '<div>A custom component!</div>'
+}
+new Vue({
+  // ...
+  components: {
+    // <my-component> will only be available in parent's template
+    'my-component': Child
+  }
+})
+
+----------------------------------------------------
+
+DOM Template Parsing Caveats
+
+<table>
+  <my-row>...</my-row>
+</table>
+
+The custom component <my-row> will be hoisted out as invalid content, thus causing errors in the eventual rendered output.(because browser restrictions) A workaround is to use the is special attribute:
+
+<table>
+  <tr is="my-row"></tr>
+</table>
 
 ```
 
