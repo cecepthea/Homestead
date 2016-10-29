@@ -27,6 +27,49 @@ vm.toggle === vm.a
 // when unchecked:
 vm.toggle === vm.b
 
+在自定义组件上使用v-model
+
+# html
+
+<div id="v-model-example">
+  <p>{{ message }}</p>
+  <my-input
+    label="Message"
+    v-model="message" <!-- pass to props value, MUST -->
+  ></my-input>
+</div>
+
+# javascript
+
+Vue.component('my-input', {
+  template: '\
+    <div class="form-group">\
+      <label v-bind:for="randomId">{{ label }}:</label>\
+      <input v-bind:id="randomId" v-bind:value="value" <!-- MUST --> v-on:input="onInput">\
+    </div>\
+  ',
+  props: ['value', 'label'],
+  data: function () {
+    return {
+      randomId: 'input-' + Math.random()
+    }
+  },
+  methods: {
+    onInput: function (event) {
+      this.$emit('input', event.target.value);
+      // emit an input event with the new value, MUST
+    }
+  },
+})
+new Vue({
+  el: '#v-model-example',
+  data: {
+    message: 'hello'
+  }
+})
+
+============
+
 v-once interpolations only once
 
 v-html interprets as realHTML not plaintext,data bindings are ignored
@@ -206,6 +249,48 @@ new Vue({
   }
 })
 
+============
+
+绑定自定义事件
+
+# html
+
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <!-- <button-counter v-on:click.native="doTheThing"></button-counter> -->
+  <!-- 原生click事件，非手动 emit
+</div>
+
+# javascript
+
+Vue.component('button-counter', {
+  template: '<button v-on:click="increment">{{ counter }}</button>',
+  data: function () {
+    return {
+      counter: 0
+    }
+  },
+  methods: {
+    increment: function () {
+      this.counter += 1
+      this.$emit('increment')
+    }
+  },
+})
+new Vue({
+  el: '#counter-event-example',
+  data: {
+    total: 0
+  },
+  methods: {
+    incrementTotal: function () {
+      this.total += 1
+    }
+  }
+})
+
 ```
 
 ## Directives
@@ -350,6 +435,111 @@ result:
     <p>This is some more original content</p>
   </div>
 </div>
+
+============
+
+child:
+
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+
+parent:
+
+<app-layout>
+  <h1 slot="header">Here might be a page title</h1>
+  <p>A paragraph for the main content.</p>
+  <p>And another one.</p>
+  <p slot="footer">Here's some contact info</p>
+</app-layout>
+
+result:
+
+<div class="container">
+  <header>
+    <h1>Here might be a page title</h1>
+  </header>
+  <main>
+    <p>A paragraph for the main content.</p>
+    <p>And another one.</p>
+  </main>
+  <footer>
+    <p>Here's some contact info</p>
+  </footer>
+</div>
+
+```
+
+动态切换组件
+
+```
+
+var vm = new Vue({
+  el: '#example',
+  data: {
+    currentView: 'home'
+  },
+  components: {
+    home: { template: '<p>Welcome home!</p>' },
+    posts: { /* ... */ },
+    archive: { /* ... */ }
+  }
+})
+
+<keep-alive><!-- 如果加keep-alive,则切换时加入内存中保留 -->
+<component v-bind:is="currentView">
+  <!-- component changes when vm.currentView changes! -->
+  <!-- 组件在 vm.currentview 变化时改变 -->
+</component>
+<keep-alive>
+
+保留的 <component> 元素
+
+```
+
+直接引用子组件
+
+```
+<div id="parent">
+  <user-profile ref="profile"></user-profile>
+</div>
+
+var parent = new Vue({ el: '#parent' })
+// access child component instance
+// 访问子组件
+var child = parent.$refs.profile
+
+```
+
+异步组件
+
+```
+// 推荐配合 webpack 使用
+
+Vue.component('async-example', function (resolve, reject) {
+  setTimeout(function () {
+    resolve({
+      template: '<div>I am async!</div>'
+    })
+  }, 1000)
+})
+
+Vue.component('async-webpack-example', function (resolve) {
+  // This special require syntax will instruct Webpack to
+  // automatically split your built code into bundles which
+  // are loaded over Ajax requests.
+  // 这个特殊的 require 语法告诉 webpack 自动将编译后的代码分割成不同的块，
+  // 这些块将通过 ajax 请求自动下载。
+  require(['./my-async-component'], resolve)
+})
 
 ```
 
