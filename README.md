@@ -1,14 +1,6 @@
 # Homestead
 
-https://github.com/ElemeFE/element
-
-https://github.com/ElemeFE/mint-ui
-
-https://github.com/vuejs/vue-hackernews
-
-vue-2.0
-
-element rc 是否结束？
+element rc end
 
 http://element.eleme.io/#/
 
