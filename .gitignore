@@ -4,3 +4,4 @@
 */cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+node_modules/
