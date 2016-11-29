@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import '../theme/index.css'
+// node_modules/.bin/et -i [可以自定义变量文件目录]
+// node_modules/.bin/et 编译主题
 import App from './App.vue'
 
 Vue.use(ElementUI)
