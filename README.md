@@ -1,7 +1,5 @@
 # Homestead
 
-element rc end
-
 http://element.eleme.io/#/
 
 https://github.com/google/material-design-lite
