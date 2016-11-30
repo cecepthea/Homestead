@@ -1,7 +1,5 @@
 # Homestead
 
-https://github.com/google/material-design-lite
-
 Discuz, Magento
 
 Vue.js + CodeIgniter module homestead
