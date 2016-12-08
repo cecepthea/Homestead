@@ -7,15 +7,13 @@ Vue.js + CodeIgniter module homestead
 ```
 User Login Module
 
-RBAC Module 多级子用户 参考Discuz数据表
+BBS Module
 
-Blog Module
+RBAC Module 多级子用户 参考Discuz数据表
 
 e-shop Module
 
-Admin Module
-
-BBS Module
+Admin Module － Use CURD tool generate
 
 h5 version
 ```
