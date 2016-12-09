@@ -1,7 +1,5 @@
 # Homestead
 
-Discuz, Magento
-
 Vue.js + CodeIgniter module homestead
 
 ```
@@ -10,8 +8,6 @@ User Login Module
 RBAC Module 多级子用户 参考Discuz数据表
 
 Admin Module － Use CURD tool generate
-
-h5 version
 ```
 
 ref:
