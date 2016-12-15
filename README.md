@@ -5,7 +5,7 @@ Vue.js + CodeIgniter module homestead
 ```
 User Login Module
 
-RBAC Module 多级子用户 参考Discuz数据表
+RBAC Module use ci plugin
 
 Admin Module － Use CURD tool generate
 ```
